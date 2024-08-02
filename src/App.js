@@ -1,12 +1,7 @@
 import './App.css'
 import { TodoList } from './components/TodoList'
-import {
-  ChakraProvider,
-  ChakraBaseProvider,
-  extendBaseTheme,
-} from '@chakra-ui/react'
-
-const theme = extendBaseTheme({})
+import { ChakraProvider, ChakraBaseProvider } from '@chakra-ui/react'
+import theme from './styles/theme'
 
 function App() {
   return (
