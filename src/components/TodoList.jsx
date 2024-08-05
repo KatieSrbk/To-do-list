@@ -2,6 +2,7 @@ import { Box, Flex, Heading } from '@chakra-ui/react'
 import { Tasks } from './Tasks'
 import { useEffect, useState } from 'react'
 import { PartAdd } from './PartAdd'
+import { Footer } from './Footer'
 
 export const TodoList = () => {
   const [todosArray, setTodosArray] = useState([])
@@ -36,6 +37,7 @@ export const TodoList = () => {
         </Flex>
         <PartAdd todosArray={todosArray} setTodosArray={setTodosArray} />
         <Tasks todosArray={todosArray} />
+        <Footer todosArray={todosArray} setTodosArray={setTodosArray} />
       </Box>
     </Flex>
   )
