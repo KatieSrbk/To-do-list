@@ -1,9 +1,9 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 
-export const Tasks = ({ todos }) => {
+export const Tasks = ({ todosArray }) => {
   return (
     <Box>
-      {todos.map((item, index) => (
+      {todosArray.map((item, index) => (
         <Flex
           key={index}
           justifyContent='space-between'
@@ -12,15 +12,15 @@ export const Tasks = ({ todos }) => {
           alignItems='center'
           overflow='hidden'
           transitionDuration='0.5s'
-          padding='0px 20px'
-          fontSize='20px'
-          borderRadius='10px'
+          paddingLeft='20px'
+          fontSize='22px'
+          borderRadius='32px'
+          border='none'
+          variant='unstyled'
+          fontFamily='initial'
+          height='50px'
         >
-          <Text
-            flexGrow={1}
-            display='flex'
-            justifyContent='flex-start'
-          >
+          <Text flexGrow={1} display='flex' justifyContent='flex-start'>
             {item.text}
           </Text>
         </Flex>
