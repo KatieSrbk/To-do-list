@@ -1,6 +1,11 @@
-import { Box, Flex, Text } from '@chakra-ui/react'
+import { Box, Flex, Text, Button } from '@chakra-ui/react'
 
-export const Tasks = ({ todosArray }) => {
+export const Tasks = ({ todosArray, setTodosArray }) => {
+  const deleteTask = (id) => {
+    const filterTodos = todosArray.filter((item) => item.id !== id)
+    setTodosArray(filterTodos)
+    localStorage.setItem('localTodos', JSON.stringify(filterTodos))
+  }
   return (
     <Box>
       {todosArray.map((item, index) => (
@@ -23,6 +28,17 @@ export const Tasks = ({ todosArray }) => {
           <Text flexGrow={1} display='flex' justifyContent='flex-start'>
             {item.text}
           </Text>
+          <Box paddingRight='20px'>
+            <Button
+              colorScheme='red'
+              variant='ghost'
+              borderRadius='16px'
+              fontSize='18px'
+              onClick={() => deleteTask(item.id)}
+            >
+              del
+            </Button>
+          </Box>
         </Flex>
       ))}
     </Box>

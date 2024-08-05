@@ -36,7 +36,7 @@ export const TodoList = () => {
           </Heading>
         </Flex>
         <PartAdd todosArray={todosArray} setTodosArray={setTodosArray} />
-        <Tasks todosArray={todosArray} />
+        <Tasks todosArray={todosArray} setTodosArray={setTodosArray}/>
         <Footer todosArray={todosArray} setTodosArray={setTodosArray} />
       </Box>
     </Flex>
