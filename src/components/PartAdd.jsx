@@ -16,6 +16,7 @@ export const PartAdd = ({ todosArray, setTodosArray }) => {
         id: Math.random(),
         text: inputText,
         isChecked: false,
+        isEdited: false,
       }
       const newArr = [newTodo, ...todosArray]
       setTodosArray(newArr)
