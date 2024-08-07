@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Flex, Button, Input, Text } from '@chakra-ui/react'
+import { Filter } from './Filter'
 
 export const PartAdd = ({ todosArray, setTodosArray }) => {
   const [inputText, setInputText] = useState('')
@@ -24,11 +25,19 @@ export const PartAdd = ({ todosArray, setTodosArray }) => {
       localStorage.setItem('localTodos', JSON.stringify(newArr))
     }
   }
+
+  const enter = (event) => {
+    if (event.keyCode === 13) {
+      clickOnAdd()
+    }
+  }
+
   return (
     <Flex justifyContent='space-between' alignItems='center'>
-      <Flex width='400px' height='50px' justifyContent='space-between'>
+      <Flex width='580px' height='50px'>
         <Input
           type='text'
+          onKeyUp={enter}
           onChange={changeInput}
           value={inputText}
           placeholder='Write your task...'
@@ -37,7 +46,7 @@ export const PartAdd = ({ todosArray, setTodosArray }) => {
           bg='white'
           paddingLeft='20px'
           borderRadius='32px'
-          width='400px'
+          width='350px'
           border='none'
           fontFamily='initial'
         ></Input>
@@ -48,10 +57,11 @@ export const PartAdd = ({ todosArray, setTodosArray }) => {
           cursor='pointer'
           transition='all 0.3 ease'
           padding='20px 10px'
+          margin='0px 3px'
           borderRadius='32px'
           display='flex'
           alignItems='center'
-          width='100px'
+          width='85px'
           height='50px'
           _hover={{ bg: 'rgb(255, 200, 0)' }}
         >
@@ -67,6 +77,7 @@ export const PartAdd = ({ todosArray, setTodosArray }) => {
             Add
           </Text>
         </Button>
+        <Filter setTodosArray={setTodosArray} />
       </Flex>
     </Flex>
   )

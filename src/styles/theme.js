@@ -9,6 +9,7 @@ const theme = extendTheme({
       },
     },
   },
+  components: {},
 })
 
 export default theme

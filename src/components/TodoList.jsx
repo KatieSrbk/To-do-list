@@ -20,14 +20,14 @@ export const TodoList = () => {
       textAlign='center'
       minH='100%'
       justifyContent='center'
-      paddingY='50px'
+      paddingY='70px'
     >
       <Box
         background='rgba(255, 255, 255, 0.8);'
         maxW='650px'
         width={['90%', '90%', '49%']}
         borderRadius='14px'
-        paddingX='50px'
+        paddingX='35px'
         paddingY='38px'
       >
         <Flex mb='15px'>
@@ -36,7 +36,7 @@ export const TodoList = () => {
           </Heading>
         </Flex>
         <PartAdd todosArray={todosArray} setTodosArray={setTodosArray} />
-        <Tasks todosArray={todosArray} setTodosArray={setTodosArray}/>
+        <Tasks todosArray={todosArray} setTodosArray={setTodosArray} />
         <Footer todosArray={todosArray} setTodosArray={setTodosArray} />
       </Box>
     </Flex>
