@@ -14,7 +14,7 @@ export const Filter = ({ setTodosArray }) => {
       const newArr = todosFromLocal.filter((item) => item.isChecked === false)
       setTodosArray(newArr)
     }
-    if (valueToFilter === 'complite') {
+    if (valueToFilter === 'complete') {
       const newArr = todosFromLocal.filter((item) => item.isChecked === true)
       setTodosArray(newArr)
     }
@@ -52,10 +52,11 @@ export const Filter = ({ setTodosArray }) => {
         fontFamily='initial'
         borderRadius='32px'
         _hover={{ border: 'none' }}
+        _focusVisible={{ border: 'none' }}
       >
         <option>all</option>
         <option>active</option>
-        <option>complite</option>
+        <option>complete</option>
       </Select>
     </Flex>
   )
