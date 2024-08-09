@@ -1,19 +1,16 @@
 import { Box, Flex, Heading } from '@chakra-ui/react'
 import { Tasks } from './Tasks'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { PartAdd } from './PartAdd'
 import { Footer } from './Footer'
+import { useDispatch } from 'react-redux'
+import { writeInitialTodos } from '../redux/slice/taskList'
 
 export const TodoList = () => {
-  const [todosArray, setTodosArray] = useState([])
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    if (localStorage.getItem('localTodos') === null) {
-      setTodosArray([])
-    } else {
-      const newArr = JSON.parse(localStorage.getItem('localTodos'))
-      setTodosArray(newArr)
-    }
+    dispatch(writeInitialTodos())
   }, [])
   return (
     <Flex
@@ -35,9 +32,9 @@ export const TodoList = () => {
             My To-Do
           </Heading>
         </Flex>
-        <PartAdd todosArray={todosArray} setTodosArray={setTodosArray} />
-        <Tasks todosArray={todosArray} setTodosArray={setTodosArray} />
-        <Footer todosArray={todosArray} setTodosArray={setTodosArray} />
+        <PartAdd />
+        <Tasks />
+        <Footer />
       </Box>
     </Flex>
   )

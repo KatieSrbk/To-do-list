@@ -1,8 +1,12 @@
 import { useState } from 'react'
 import { Flex, Button, Input, Text } from '@chakra-ui/react'
 import { Filter } from './Filter'
+import { useDispatch, useSelector } from 'react-redux'
+import { setTodosArray } from '../redux/slice/taskList'
 
-export const PartAdd = ({ todosArray, setTodosArray }) => {
+export const PartAdd = () => {
+  const dispatch = useDispatch()
+  const { todosArray } = useSelector((state) => state.taskList)
   const [inputText, setInputText] = useState('')
 
   const changeInput = (event) => {
@@ -20,9 +24,8 @@ export const PartAdd = ({ todosArray, setTodosArray }) => {
         isEdited: false,
       }
       const newArr = [newTodo, ...todosArray]
-      setTodosArray(newArr)
+      dispatch(setTodosArray({ array: newArr, isSaveInStorage: true }))
       setInputText('')
-      localStorage.setItem('localTodos', JSON.stringify(newArr))
     }
   }
 
@@ -77,7 +80,7 @@ export const PartAdd = ({ todosArray, setTodosArray }) => {
             Add
           </Text>
         </Button>
-        <Filter setTodosArray={setTodosArray} />
+        <Filter />
       </Flex>
     </Flex>
   )

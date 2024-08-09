@@ -1,15 +1,20 @@
 import { Flex, Text, Button } from '@chakra-ui/react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setTodosArray } from '../redux/slice/taskList'
 
-export const Footer = ({ todosArray, setTodosArray }) => {
+export const Footer = () => {
+  const dispatch = useDispatch()
+  const { todosArray } = useSelector((state) => state.taskList)
+
   const textFooter =
     todosArray.length === 0
       ? "You don't have tasks :("
       : `You have ${todosArray.length} pending tasks`
 
   const deleteAllTodos = () => {
-    setTodosArray([])
-    localStorage.setItem('localTodos', JSON.stringify([]))
+    dispatch(setTodosArray({ array: [], isSaveInStorage: true }))
   }
+
   return (
     <Flex as='footer' justifyContent='space-between' marginTop='9px'>
       <Text

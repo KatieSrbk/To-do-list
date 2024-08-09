@@ -1,24 +1,29 @@
 import { Flex, Select } from '@chakra-ui/react'
+import { useDispatch } from 'react-redux'
+import { setTodosArray } from '../redux/slice/taskList'
 
-export const Filter = ({ setTodosArray }) => {
-  const filterAllTodos = (valueToFilter) => {
+export const Filter = () => {
+  const dispatch = useDispatch()
+
+  const filterAllTodos = async (valueToFilter) => {
     const todosFromLocal = localStorage.getItem('localTodos')
       ? JSON.parse(localStorage.getItem('localTodos'))
       : []
 
     if (valueToFilter === 'all') {
       const newArr = [...todosFromLocal]
-      setTodosArray(newArr)
+      dispatch(setTodosArray({ array: newArr, isSaveInStorage: false }))
     }
     if (valueToFilter === 'active') {
       const newArr = todosFromLocal.filter((item) => item.isChecked === false)
-      setTodosArray(newArr)
+      dispatch(setTodosArray({ array: newArr, isSaveInStorage: false }))
     }
     if (valueToFilter === 'complete') {
       const newArr = todosFromLocal.filter((item) => item.isChecked === true)
-      setTodosArray(newArr)
+      dispatch(setTodosArray({ array: newArr, isSaveInStorage: false }))
     }
   }
+
   return (
     <Flex
       alignItems='center'

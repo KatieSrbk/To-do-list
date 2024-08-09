@@ -1,7 +1,11 @@
 import { Box, Flex, Text, Button, Input } from '@chakra-ui/react'
 import { useState } from 'react'
+import { setTodosArray } from '../redux/slice/taskList'
+import { useDispatch, useSelector } from 'react-redux'
 
-export const Tasks = ({ todosArray, setTodosArray }) => {
+export const Tasks = () => {
+  const dispatch = useDispatch()
+  const { todosArray } = useSelector((state) => state.taskList)
   const [inputForEdit, setInputForEdit] = useState('')
 
   const changeInputForEdit = (event) => {
@@ -10,9 +14,9 @@ export const Tasks = ({ todosArray, setTodosArray }) => {
 
   const deleteTask = (id) => {
     const filterTodos = todosArray.filter((item) => item.id !== id)
-    setTodosArray(filterTodos)
-    localStorage.setItem('localTodos', JSON.stringify(filterTodos))
+    dispatch(setTodosArray({ array: filterTodos, isSaveInStorage: true }))
   }
+
   const taskCompletionButton = (id) => {
     const updatedTodos = todosArray.map((item) => {
       if (item.id === id) {
@@ -25,8 +29,7 @@ export const Tasks = ({ todosArray, setTodosArray }) => {
         return item
       }
     })
-    setTodosArray(updatedTodos)
-    localStorage.setItem('localTodos', JSON.stringify(updatedTodos))
+    dispatch(setTodosArray({ array: updatedTodos, isSaveInStorage: true }))
   }
 
   const editTask = (id) => {
@@ -42,11 +45,11 @@ export const Tasks = ({ todosArray, setTodosArray }) => {
         return newEditTodo
       }
     })
-    setTodosArray(newTodos)
+    dispatch(setTodosArray({ array: newTodos, isSaveInStorage: false }))
   }
 
   const saveEditedTask = (id) => {
-    const arrayEdited = todosArray.map((item) => {
+    const editedArray = todosArray.map((item) => {
       if (item.id === id) {
         const newItem = {
           ...item,
@@ -58,9 +61,8 @@ export const Tasks = ({ todosArray, setTodosArray }) => {
         return item
       }
     })
-    setTodosArray(arrayEdited)
+    dispatch(setTodosArray({ array: editedArray, isSaveInStorage: true }))
     setInputForEdit('')
-    localStorage.setItem('localTodos', JSON.stringify(arrayEdited))
   }
   const cancelEditingForTask = (id) => {
     const newCancellationFeature = todosArray.map((item) => {
@@ -74,7 +76,9 @@ export const Tasks = ({ todosArray, setTodosArray }) => {
         return item
       }
     })
-    setTodosArray(newCancellationFeature)
+    dispatch(
+      setTodosArray({ array: newCancellationFeature, isSaveInStorage: false })
+    )
     setInputForEdit('')
   }
 
