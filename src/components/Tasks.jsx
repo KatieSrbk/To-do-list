@@ -164,6 +164,7 @@ export const Tasks = () => {
               height='50px'
             >
               <Input
+                id='edit_input'
                 value={inputForEdit}
                 onChange={changeInputForEdit}
                 flexGrow={1}

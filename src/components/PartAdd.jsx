@@ -36,9 +36,20 @@ export const PartAdd = () => {
   }
 
   return (
-    <Flex justifyContent='space-between' alignItems='center'>
-      <Flex width='580px' height='50px'>
+    <Flex
+      flexWrap={['wrap', 'wrap', 'wrap', 'nowrap', 'nowrap']}
+      alignItems='center'
+      justifyContent={['center', 'center', 'center', 'center', 'space-between']}
+      flexGrow={1}
+    >
+      <Flex
+        height='50px'
+        justifyContent='space-between'
+        flexGrow={1}
+        mb={[3, 0, 0, 0, 0]}
+      >
         <Input
+          id='add_input'
           type='text'
           onKeyUp={enter}
           onChange={changeInput}
@@ -49,7 +60,6 @@ export const PartAdd = () => {
           bg='white'
           paddingLeft='20px'
           borderRadius='32px'
-          width='350px'
           border='none'
           fontFamily='initial'
         ></Input>
@@ -80,8 +90,8 @@ export const PartAdd = () => {
             Add
           </Text>
         </Button>
-        <Filter />
       </Flex>
+      <Filter />
     </Flex>
   )
 }
