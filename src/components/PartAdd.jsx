@@ -14,12 +14,12 @@ export const PartAdd = () => {
   }
 
   const clickOnAdd = () => {
-    if (inputText === '') {
+    if (inputText.trim() === '') {
       return
     } else {
       const newTodo = {
         id: Math.random(),
-        text: inputText,
+        text: inputText.trim(),
         isChecked: false,
         isEdited: false,
       }
